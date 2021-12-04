@@ -4,8 +4,7 @@ def main():
     file = open('input.txt', 'r')
     numbers = [line.strip() for line in file.readlines()]
     partOne(numbers)
-    partTwo(numbers)
-        
+    partTwo(numbers)        
 
 def partOne(numbers):
     noOfNoises = len(numbers)
@@ -17,7 +16,6 @@ def partOne(numbers):
     print(gammaRate * epsilonRate)
 
 def partTwo(numbers):
-
     oxygenNumbers = numbers.copy()
     co2Numbers = numbers.copy()
 
