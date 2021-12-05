@@ -38,6 +38,11 @@ def main():
 
     boards = []
     boardNumbers = []
+    boardsWon = []
+    
+    winningResult = 0
+    lastWinResult = 0
+    foundWinner = False
 
     for line in lines:
         if line == '\n':
@@ -47,19 +52,23 @@ def main():
         else:
             boardNumbers += line.split()
 
-    winningResult = 0
-    foundWinner = False
+    boards.append(BingoBoard(list(map(lambda number: int(number), boardNumbers)), 5))
 
-    for number in numbers:
-        for board in boards:
+    for i in range(len(numbers)):
+        number = numbers[i]
+        for j in range(len(boards)):
+            board = boards[j]
             board.markNumber(number)
-            if board.isWinning():
-                winningResult = board.getSumOfUnmarkedNumbers() * number
-                foundWinner = True
-                break
-        if foundWinner: break
+            if board.isWinning() and board not in boardsWon:
+                if not foundWinner:
+                    winningResult = board.getSumOfUnmarkedNumbers() * number
+                    foundWinner = True
+
+                lastWinResult = board.getSumOfUnmarkedNumbers() * number
+                boardsWon.append(board)
 
     print(winningResult)
+    print(lastWinResult)
 
 
 if __name__ == "__main__":
