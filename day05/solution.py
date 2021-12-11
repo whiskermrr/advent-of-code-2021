@@ -28,8 +28,6 @@ def solutions(lines):
             if y1 > y2 and x1 > x2:
                 diagonals += [(x, y2 + i) for i, x in enumerate(range(x2, x1 + 1))]
                 
-                
-
     ### part one
     print(len([point for point, count in Counter(points).items() if count > 1]))
     ### part two
